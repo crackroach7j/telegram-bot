@@ -42,6 +42,6 @@ if __name__ == "__main__":
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_url))
 
     # Set the webhook URL to your Vercel app's URL
-    bot.set_webhook('https://your-vercel-app.vercel.app/webhook')
+    bot.set_webhook('https://telegram-bot-rho-navy.vercel.app/')
 
     app.run(port=8443)
