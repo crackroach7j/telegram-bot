@@ -13,17 +13,21 @@ dp = Dispatcher(bot, None, workers=0)
 # Set the webhook automatically when the app starts
 def set_webhook():
     webhook_url = "https://telegram-bot-git-main-crackroach7js-projects.vercel.app/webhook"
-    bot.setWebhook(webhook_url)
+    try:
+        bot.setWebhook(webhook_url)
+        print(f"Webhook set to {webhook_url}")  # Log the webhook setting
+    except Exception as e:
+        print(f"Failed to set webhook: {e}")  # Log error if webhook setting fails
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
     try:
         update = Update.de_json(request.get_json(force=True), bot)
         dp.process_update(update)
+        return "ok", 200
     except Exception as e:
-        print(f"Error: {e}")  # Log error to Vercel logs
+        print(f"Error processing update: {e}")  # Log error to Vercel logs
         return "Error occurred", 500
-    return "ok", 200
 
 def start(update: Update, context: CallbackContext) -> None:
     """Sends a message when the /start command is issued."""
