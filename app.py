@@ -12,7 +12,7 @@ dp = Dispatcher(bot, None, workers=0)
 
 # Set the webhook automatically when the app starts
 def set_webhook():
-    webhook_url = "https://telegram-bot-crackroach7js-projects.vercel.app/webhook"
+    webhook_url = "https://telegram-bot-git-main-crackroach7js-projects.vercel.app/webhook"
     bot.setWebhook(webhook_url)
 
 @app.route('/webhook', methods=['POST'])
